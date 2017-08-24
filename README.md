@@ -1,5 +1,10 @@
 # webMethods CloudStreams Provider for Messagebird
 This project provides a sample webMethods CloudStreams Provider Project for Messagebird. The following APIs are available:
+* **Send SMS:** Creates a new message object. MessageBird returns the created message object with each request. Per request, a max of 50 recipients can be entered. https://developers.messagebird.com/docs/messaging#messaging-send
+* **View SMS:** Retrieves the information of an existing message. This message can be a sent or a received message. You only need to supply the unique message id that was returned upon creation or receiving. https://developers.messagebird.com/docs/messaging#messaging-view
+* **Send Voicemessage:** Creates a new voice message object. MessageBird returns the created voice message object with each request. Per request, a max of 50 recipients can be entered. https://developers.messagebird.com/docs/voice#voicemessaging-send
+* **View Voicemessage:** Retrieves the information of an existing voice message. You only need to supply the unique voice message id that was returned upon creation. https://developers.messagebird.com/docs/voice#voicemessaging-view
+* **Get Balance:** Retrieves your MessageBird balance. https://developers.messagebird.com/docs/balance#balance-get
 
 ## Requirements
 
