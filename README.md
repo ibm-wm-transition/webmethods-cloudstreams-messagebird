@@ -36,7 +36,7 @@ The CloudStreams Provider Project does not contain neccessary doctypes.
 2. Open Integration Server Administration in your browser.
 3. Install both packages with ```Install Inbound Releases``` in Package Management.
 
-### Add Messagebird Accesskey and activate connections
+### Add Messagebird Accesskey and activate connection
 
 To access Messagebird an Accesskey is neccessary. Generate your Messagebird Trial account here: https://www.messagebird.com.
 
