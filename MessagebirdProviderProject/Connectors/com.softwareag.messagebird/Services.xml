@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rest-connector xmlns="http://www.softwareag.com/cloudstreams/metadata/handler/model">
+    <services>
+        <service xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RESTServiceType" endpoint="${cn.providerUrl}" name="SMS" displayName="SMS">
+            <description>MessageBird provides an API to send and receive SMS messages to and from any country across the world.</description>
+            <documentModel packageName="messagebird" nsName="wmmessagebird.doc" useInlineModel="false"/>
+            <resources>
+                <mappings>
+                    <map isRequired="true" isFixed="true" context="IN" name="AuthHeader" displayName="AuthHeader">
+                        <source type="IDATA">cx.Accesskey</source>
+                        <target type="HEADER">Authorization</target>
+                    </map>
+                </mappings>
+                <resource method="POST" path="/messages" name="SendSMS" displayName="SendSMS">
+                    <description>Creates a new message object. MessageBird returns the created message object with each request. Per request, a max of 50 recipients can be entered.</description>
+                    <request name="Request" messageFormatterType="application/json" builderType="application/octet+idataoref" documentRef="wmmessagebird.doc:SendSMSRequest" excludeRoot="true"/>
+                    <responses>
+                        <response name="Success" code="200-204" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:MessageObject" excludeRoot="true"/>
+                        <response name="Error" code="400-505" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:ErrorObject" excludeRoot="true"/>
+                    </responses>
+                </resource>
+                <resource method="GET" path="/messages/{messageId}" name="ViewSMS" displayName="ViewSMS">
+                    <description>Retrieves the information of an existing message. This message can be a sent or a received message. You only need to supply the unique message id that was returned upon creation or receiving.</description>
+                    <parameters>
+                        <parameter name="messageId" isRequired="true" style="URI_CONTEXT"/>
+                    </parameters>
+                    <responses>
+                        <response name="Success" code="200-204" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:MessageObject" excludeRoot="true"/>
+                        <response name="Error" code="400-505" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:ErrorObject" excludeRoot="true"/>
+                    </responses>
+                </resource>
+            </resources>
+        </service>
+        <service xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RESTServiceType" endpoint="${cn.providerUrl}" name="VoiceMessaging" displayName="VoiceMessaging">
+            <description>MessageBird provides an API to transform text messages into voice messages to any country across the world.</description>
+            <documentModel packageName="messagebird" nsName="wmmessagebird.doc" useInlineModel="false"/>
+            <resources>
+                <mappings>
+                    <map isRequired="true" isFixed="true" context="IN" name="AuthHeader" displayName="AuthHeader">
+                        <source type="IDATA">cx.Accesskey</source>
+                        <target type="HEADER">Authorization</target>
+                    </map>
+                </mappings>
+                <resource method="POST" path="/voicemessages" name="SendVoicemessage" displayName="SendVoicemessage">
+                    <description>Creates a new voice message object. MessageBird returns the created voice message object with each request. Per request, a max of 50 recipients can be entered.</description>
+                    <request name="Request" messageFormatterType="application/json" builderType="application/octet+idataoref" documentRef="wmmessagebird.doc:SendVoicemessageRequest" excludeRoot="true"/>
+                    <responses>
+                        <response name="Success" code="200-204" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:VoicemessageObject" excludeRoot="true"/>
+                        <response name="Error" code="400-505" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:ErrorObject" excludeRoot="true"/>
+                    </responses>
+                </resource>
+                <resource method="GET" path="/voicemessages/{voiceMessageId}" name="ViewVoicemessage" displayName="ViewVoicemessage">
+                    <description>Retrieves the information of an existing voice message. You only need to supply the unique voice message id that was returned upon creation.</description>
+                    <parameters>
+                        <parameter name="voiceMessageId" isRequired="true" style="URI_CONTEXT"/>
+                    </parameters>
+                    <responses>
+                        <response name="Success" code="200-204" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:VoicemessageObject" excludeRoot="true"/>
+                        <response name="Error" code="400-505" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:ErrorObject" excludeRoot="true"/>
+                    </responses>
+                </resource>
+            </resources>
+        </service>
+        <service xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RESTServiceType" endpoint="${cn.providerUrl}" name="Balance" displayName="Balance">
+            <description>MessageBird provides an API to get the balance and balance information of your account.</description>
+            <documentModel packageName="messagebird" nsName="wmmessagebird.doc" useInlineModel="false"/>
+            <resources>
+                <mappings>
+                    <map isRequired="true" isFixed="true" context="IN" name="AuthHeader" displayName="AuthHeader">
+                        <source type="IDATA">cx.Accesskey</source>
+                        <target type="HEADER">Authorization</target>
+                    </map>
+                </mappings>
+                <resource method="GET" path="/balance" name="GetBalance" displayName="GetBalance">
+                    <description>Retrieves your MessageBird balance.</description>
+                    <responses>
+                        <response name="Success" code="200-204" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:BalanceObject" excludeRoot="true"/>
+                        <response name="Error" code="400-505" messageFormatterType="application/octet+idataoref" builderType="application/json" documentRef="wmmessagebird.doc:ErrorObject" excludeRoot="true"/>
+                    </responses>
+                </resource>
+            </resources>
+        </service>
+    </services>
+</rest-connector>
